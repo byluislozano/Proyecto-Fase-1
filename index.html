@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Codifica con Guali</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    
+    <section class="left-panel">
+      <h1>Codifica con Guali</h1>
+
+      <div id="grid" class="grid" role="grid" aria-label="Tablero 4 filas por 5 columnas">
+        <!-- Fila 0 -->
+        <div class="cell" data-r="0" data-c="0"></div>
+        <div class="cell" data-r="0" data-c="1"></div>
+        <div class="cell" data-r="0" data-c="2"></div>
+        <div class="cell" data-r="0" data-c="3"></div>
+        <div class="cell" data-r="0" data-c="4"></div>
+        <!-- Fila 1 -->
+        <div class="cell" data-r="1" data-c="0"></div>
+        <div class="cell" data-r="1" data-c="1"></div>
+        <div class="cell" data-r="1" data-c="2"></div>
+        <div class="cell" data-r="1" data-c="3"></div>
+        <div class="cell" data-r="1" data-c="4"></div>
+        <!-- Fila 2 -->
+        <div class="cell" data-r="2" data-c="0"></div>
+        <div class="cell" data-r="2" data-c="1"></div>
+        <div class="cell" data-r="2" data-c="2"></div>
+        <div class="cell" data-r="2" data-c="3"></div>
+        <div class="cell" data-r="2" data-c="4"></div>
+        <!-- Fila 3 -->
+        <div class="cell" data-r="3" data-c="0"></div>
+        <div class="cell" data-r="3" data-c="1"></div>
+        <div class="cell" data-r="3" data-c="2"></div>
+        <div class="cell" data-r="3" data-c="3"></div>
+        <div class="cell" data-r="3" data-c="4"></div>
+      </div>
+
+      <!-- Controles de movimientos -->
+      <div id="controls" class="controls" aria-label="Controles de movimiento">
+        <button class="btn up"    data-move="F" title="Adelante (mueve 1 celda)" type="button">↑</button>
+        <button class="btn left"  data-move="L" title="Girar izquierda (no avanza)" type="button">←</button>
+        <button class="btn right" data-move="R" title="Girar derecha (no avanza)" type="button">→</button>
+        <button class="btn loop"  data-move="B" title="Bucle (abre/cierra bloque → duplica el bloque)" type="button">↺</button>
+      </div>
+
+      <!-- Acciones -->
+      <div class="actions">
+        <button id="btn-exec"  class="execute" type="button">Ejecutar</button>
+        <button id="btn-reset" class="reset"   type="button">Reiniciar</button>
+        <button id="btn-conf"  class="config"  type="button" aria-pressed="false">Configurar</button>
+        <button id="btn-save"  class="config"  type="button" hidden>Guardar</button>
+      </div>
+
+      <p id="status" class="status" aria-live="polite"></p>
+    </section>
+
+    <!-- Panel derecho -->
+    <aside class="right-panel">
+      <h3>Comando Seleccionados</h3>
+      <p>Movimientos:</p>
+      <ul id="moves"></ul>
+    </aside>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal__backdrop"></div>
+      <div class="modal__content" role="document">
+        <img src="img/robot.png" alt="Robot" class="modal__img" />
+        <h2 id="modal-title" class="modal__title">¡Felicitaciones!</h2>
+        <p id="modal-msg" class="modal__msg">Misión cumplida</p>
+        <button id="modal-close" class="modal__btn" type="button">Cerrar</button>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

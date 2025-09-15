@@ -1,0 +1,266 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #141414;
+  --panel: #1b1b1b;
+  --text: #f4f4f4;
+  --accent: #ffa24b;
+  --ring: #3b82f6;
+  --cell: #ffffff;
+  --cell-border: #d6d6d6;
+  --gap: 8px;
+  --cell-size: 80px;
+  --r-lg: 16px;
+  --r-sm: 10px;
+  --shadow: 0 6px 18px rgba(0, 0, 0, .25);
+  --btn-green: #1fb262;
+  --btn-red: #e3564a;
+  --btn-blue: #6fa8ff;
+  --btn-gray: #8a8a8a;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 "Comic Sans MS", cursive, ui-sans-serif, system-ui;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 24px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1.5fr .9fr;
+}
+
+.left-panel,
+.right-panel {
+  background: var(--panel);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.left-panel h1 {
+  text-align: center;
+  margin-bottom: 16px;
+  color: var(--accent);
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.right-panel h3 {
+  margin: 0 0 8px 0;
+}
+
+.grid {
+  width: max-content;
+  padding: 18px;
+  margin: 0 auto 16px;
+  display: grid;
+  grid-template-columns: repeat(5, var(--cell-size));
+  gap: var(--gap);
+  background: #0e0e0e;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+}
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 2px solid var(--cell-border);
+  border-radius: 14px;
+  background: var(--cell);
+  transition: background .15s, box-shadow .15s;
+  position: relative;
+}
+
+.cell.green {
+  background: #8ccf58;
+}
+
+.cell.start {
+  box-shadow: 0 0 0 3px var(--ring) inset;
+}
+
+.cell .robot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 66px;
+  height: auto;
+  border-radius: 12%;
+  transition: transform .25s;
+  /* rotación suave */
+}
+
+.controls {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin: 12px 0 10px;
+}
+
+.controls .btn {
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 28px;
+  box-shadow: var(--shadow);
+}
+
+.btn.up {
+  background: var(--btn-blue);
+}
+
+.btn.left {
+  background: #ffd95a;
+}
+
+.btn.right {
+  background: #ffb05a;
+}
+
+.btn.loop {
+  background: var(--btn-blue);
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin: 6px 0 10px;
+}
+
+.actions .execute {
+  background: var(--btn-green);
+  color: #fff;
+}
+
+.actions .reset {
+  background: var(--btn-red);
+  color: #fff;
+}
+
+.actions .config {
+  background: #8f8f8f;
+  color: #fff;
+}
+
+.actions button {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+}
+
+#moves {
+  list-style: disc;
+  margin-left: 20px;
+}
+
+#moves li {
+  margin: 4px 0;
+}
+
+#moves li.active {
+  background: rgba(255, 255, 255, .06);
+  border-left: 4px solid var(--ring);
+  padding-left: 8px;
+  border-radius: 6px;
+}
+
+.status {
+  text-align: center;
+  margin-top: 6px;
+  color: #bbb;
+  min-height: 24px;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 30;
+}
+
+.modal[aria-hidden="true"] {
+  display: none;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .6);
+  backdrop-filter: blur(2px);
+}
+
+.modal__content {
+  position: relative;
+  background: #1c1c1c;
+  color: #fff;
+  border-radius: 20px;
+  padding: 24px 28px;
+  min-width: 320px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.modal__img {
+  width: 100px;
+  height: auto;
+  margin: -10px auto 8px;
+  display: block;
+}
+
+.modal__title {
+  font-size: 28px;
+  color: #ffa24b;
+  margin-bottom: 6px;
+  font-weight: 800;
+}
+
+.modal__msg {
+  margin-bottom: 14px;
+}
+
+.modal__btn {
+  background: var(--btn-green);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .left-panel {
+    order: 1;
+  }
+
+  .right-panel {
+    order: 2;
+  }
+}
