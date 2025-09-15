@@ -6,7 +6,6 @@
   const VEC = { N:[-1,0], E:[0,1], S:[1,0], W:[0,-1] };
   const STORAGE_KEY = "track_5x4";
 
-
   const PRESET_TRACKS = [
     [
       [0,0,0,0,0],
@@ -24,11 +23,10 @@
       [0,0,0,0,0],
       [0,0,1,0,0],
       [1,1,1,0,0],
-      [1,0,0,0,0],  
+      [1,0,0,0,0],
     ],
   ].map(m => m.map(row => row.map(Boolean)));
 
-  
   let configure = false;
   let track = Array.from({length:ROWS},()=>Array(COLS).fill(false));
   let robot = { r: ROWS-1, c: 0, dir: "E" };
@@ -64,15 +62,12 @@
     robotImg.style.transform = `translate(-50%,-50%) rotate(${ANG[dir]}deg)`;
   }
 
-
   attachEvents();
   loadRandomTrack();
   placeRobot();
   writeStatus("Selecciona movimientos y pulsa Ejecutar.");
 
-  
   function attachEvents(){
-    
     grid.addEventListener("click", onGridClick);
 
     controlsEl.addEventListener("click", (e)=>{
@@ -83,11 +78,8 @@
     });
 
     btnExec.addEventListener("click", runProgram);
-
     btnReset.addEventListener("click", resetAll);
-
     btnConf.addEventListener("click", toggleConfigure);
-
     btnSave.addEventListener("click", saveTrack);
 
     modalClose.addEventListener("click", hideModal);
@@ -189,13 +181,13 @@
       writeStatus("Agrega movimientos antes de ejecutar.", true);
       return;
     }
-    
+
     const startR = ROWS-1, startC = 0;
     if(!onPath(startR,startC)){
       writeStatus("La celda inicial no está en la pista. Píntala en Configurar.", true);
       return;
     }
-    
+
     const openCount = moves.filter(m=>m==="B").length;
     if(openCount % 2 !== 0){
       writeStatus("El bucle B debe cerrarse con otro B (pares).", true);
@@ -223,7 +215,7 @@
       if(pi >= program.length){
         clearInterval(timer); timer = null;
         setRunning(false);
-        
+
         if(farGoal && r===farGoal.r && c===farGoal.c){
           writeStatus("Misión satisfactoria");
           showModal("success","¡Felicitaciones!","Misión cumplida");
